@@ -1,0 +1,629 @@
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+local Window = Rayfield:CreateWindow({
+   Name = "Combat Initation Script (v2.1.3.2)",
+   Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
+   LoadingTitle = "My back hurts",
+   LoadingSubtitle = "updated By nick",
+   Theme = "Default", -- Check https://docs.sirius.menu/rayfield/configuration/themes
+ 
+   DisableRayfieldPrompts = false,
+   DisableBuildWarnings = false, -- Prevents Rayfield from warning when the script has a version mismatch with the interface
+ 
+   ConfigurationSaving = {
+      Enabled = false,
+      FolderName = nil, -- Create a custom folder for your hub/game
+      FileName = "Big Hub"
+   },
+ 
+   Discord = {
+      Enabled = false, -- Prompt the user to join your Discord server if their executor supports it
+      Invite = "noinvitelink", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ ABCD would be ABCD
+      RememberJoins = true -- Set this to false to make them join the discord every time they load it up
+   },
+ 
+   KeySystem = false, -- Set this to true to use our key system
+   KeySettings = {
+      Title = "Untitled",
+      Subtitle = "Key System",
+      Note = "No method of obtaining the key is provided", -- Use this to tell the user how to get a key
+      FileName = "Key", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
+      SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
+      GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
+      Key = {"Hello"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
+   }
+})
+ 
+-- Function to modify tool attributes safely (check both Backpack and equipped tools)
+local function modifyToolAttributes(toolName, attributes)
+    local player = game.Players.LocalPlayer
+    local tool = player.Backpack:FindFirstChild(toolName) or player.Character:FindFirstChild(toolName)
+ 
+    if tool then
+        for attribute, value in pairs(attributes) do
+            tool:SetAttribute(attribute, value)
+        end
+        print(toolName .. " attributes have been set.")
+    else
+        print(toolName .. " not found in the Backpack or equipped.")
+    end
+end
+ 
+local Tab = Window:CreateTab("Main", 0)
+ 
+local Section1 = Tab:CreateSection("Sword")
+Tab:CreateParagraph({Title = "Sword", Content = "Parry PARRYYYYYYYYYYYY"})
+ 
+-- Button for Modded Sword
+Tab:CreateButton({
+	Name = "Modded Sword",
+	Callback = function(Value)
+		modifyToolAttributes("Sword", {
+			LungeRate = 0,
+			Swingrate = 0,
+			OffhandSwingRate = 0
+		})
+	end
+})
+ 
+-- Button for Modded Firebrand
+Tab:CreateButton({
+	Name = "Modded Firebrand",
+	Callback = function()
+		modifyToolAttributes("Firebrand", {
+			LungeRate = 0,
+			Swingrate = 0,
+			OffhandSwingRate = 0,
+			Windup = 0
+		})
+	end
+})
+ 
+-- Button for Modded Katana
+Tab:CreateButton({
+	Name = "Modded Katana",
+	Callback = function()
+		modifyToolAttributes("Katana", {
+		    LungeRate = 0,
+		    Swingrate = 0,
+		    OffhandSwingRate = 0
+		})
+	end
+})
+ 
+local Section2 = Tab:CreateSection("Slingshot")
+Tab:CreateParagraph({Title = "Slingshot", Content = "Spammy!"})
+ 
+-- Button for Modded Slingshot
+Tab:CreateButton({
+	Name = "Modded Slingshot",
+	Callback = function()
+		modifyToolAttributes("Slingshot", {
+			Capacity = 10000,
+			ChargeRate = 0,
+			Firerate = 0,
+			Spread = 0,
+			ProjectileSpeed = 2250
+		})
+	end
+})
+ 
+-- Button for Modded Flamethrower
+Tab:CreateButton({
+	Name = "Modded Flamethrower",
+	Callback = function()
+		modifyToolAttributes("Flamethrower", {
+		    Cooldown = 0
+		})
+	end
+})
+ 
+ -- Button for Modded ScatterBlaster
+Tab:CreateButton({
+	Name = "Modded Scatterblaster",
+	Callback = function()
+		modifyToolAttributes("Scatterblaster", {
+			Capacity = 10000,
+			ChargeRate = 0,
+			Firerate = 0,
+			Spread = 0,
+			ProjectileSpeed = 3000
+		})
+	end
+})
+ 
+local Section3 = Tab:CreateSection("Paintball Gun")
+Tab:CreateParagraph({Title = "Paintball Gun", Content = "Ah, yes! The good ol' ranged guns!"})
+ 
+-- Button for Modded Paintball Gun
+Tab:CreateButton({
+	Name = "Modded Paintball Gun",
+	Callback = function()
+		modifyToolAttributes("Paintball Gun", {
+		    Firerate = 0,
+		    ProjectileSpeed = 2250
+		})
+	end
+})
+ 
+-- Button for Modded BB Gun
+Tab:CreateButton({
+	Name = "Modded BB Gun",
+	Callback = function()
+		modifyToolAttributes("BB Gun", {
+		    Firerate = 0,
+		    MinShots = 2,
+		    MaxShots = math.huge -- Use `math.huge` for infinite value
+		})
+	end
+})
+ 
+-- Button for Modded Freeze Ray
+Tab:CreateButton({
+	Name = "Modded Freeze Ray (Always Charged)",
+	Callback = function()
+		modifyToolAttributes("Freeze Ray", {
+		    Firerate = 0,
+		    ProjectileSpeed = 2250,
+		    ChargeTime = 0
+		})
+	end
+})
+Tab:CreateButton({
+	Name = "Modded Freeze Ray (Hold to Charge)",
+	Callback = function()
+		modifyToolAttributes("Freeze Ray", {
+		    Firerate = 0,
+		    ProjectileSpeed = 2250,
+		})
+	end
+})
+ 
+local Section4 = Tab:CreateSection("Superball and Rocket launcher")
+Tab:CreateParagraph({Title = "Superball n shii", Content = "Bounce and BOOOMM!."})
+ 
+-- Button for Modded Ninja Stars
+Tab:CreateButton({
+	Name = "Modded Superball",
+	Callback = function(Value)
+		modifyToolAttributes("Superball", {
+		    ThrowRate = 0,
+		    ChargeRate = 0
+		})
+	end
+})
+
+-- Button for Modded Ninja Stars
+Tab:CreateButton({
+	Name = "Modded Ninja Stars",
+	Callback = function(Value)
+		modifyToolAttributes("Ninja Stars", {
+		    ThrowRate = 0,
+		    Capacity = 10000000,
+		    ChargeRate = 0
+		})
+	end
+})
+ 
+-- Button for Modded Bazooka
+Tab:CreateButton({
+	Name = "Modded Bazooka",
+	Default = false,
+	Flag = "Bazooka",
+	Callback = function()
+		modifyToolAttributes("Bazooka", {
+			ReloadTick = 0,
+			Capacity = 100,
+			PassiveReloadTick = 0
+		})
+	end
+})
+
+-- Button for Modded Rocket Launcher
+Tab:CreateButton({
+	Name = "Modded Rocket Launcher",
+	Default = false,
+	Flag = "Rocket_Launcher",
+	Callback = function()
+		modifyToolAttributes("Rocket Launcher", {
+			ReloadTick = 0,
+			Capacity = 100,
+			PassiveReloadTick = 0
+		})
+	end
+})
+
+-- Button for Modded Multi-Rocket Launcher
+Tab:CreateButton({
+	Name = "Modded Multi-Rocket Launcher",
+	Default = false,
+	Flag = "Multi-Rocket_Launcher",
+	Callback = function()
+		modifyToolAttributes("Multi-Rocket Launcher", {
+			ReloadTick = 0,
+			Capacity = 100,
+			PassiveReloadTick = 0
+		})
+	end
+})
+ 
+local Section5 = Tab:CreateSection("Timebomb")
+Tab:CreateParagraph({Title = "Timebomb", Content = "Chat is this real?"})
+ 
+-- Button for Modded Subspace Tripmine
+Tab:CreateButton({
+	Name = "Modded Subspace Tripmine",
+	Default = false,
+	Flag = "Subspace_Tripmine",
+	Callback = function()
+		modifyToolAttributes("Subspace Tripmine", {
+		    Cooldown = 0
+		})
+	end
+})
+ 
+-- Button for Modded Explosive Pinata
+Tab:CreateButton({
+	Name = "Modded Explosive Pinata",
+	Callback = function(Value)
+		    modifyToolAttributes("Explosive Pinata", {
+			    Cooldown = 0
+		    })
+	end
+})
+ 
+local Section6 = Tab:CreateSection("Trowel")
+Tab:CreateParagraph({Title = "Trowel", Content = "Hey look guys! I'm a Builder Man!"})
+ 
+-- Toggle for Frozen Wrench
+Tab:CreateToggle({
+	Name = "Frozen Wrench",
+	Flag = "Wrench",
+	Callback = function(Value)
+		local tool = game.Players.LocalPlayer.Backpack:FindFirstChild("Wrench") or game.Players.LocalPlayer.Character:FindFirstChild("Wrench")
+		if tool then
+			tool:SetAttribute("TimeScale", Value and 0 or 1)
+		else
+			print("Wrench not found in the Backpack or equipped.")
+		end
+	end
+})
+ 
+-- Hats Tab
+local Tab2 = Window:CreateTab("Hats", 0)
+ 
+-- Button for Electric Punk
+Tab2:CreateButton({
+	Name = "Electric Punk (Lighting Chance)",
+	Callback = function()
+		local accessoryEffects = game.Players.LocalPlayer.Backpack.Parent:FindFirstChild("AccessoryEffects")
+		if accessoryEffects then
+			accessoryEffects:SetAttribute("Lightning_Chance", 100)
+		else
+			print("AccessoryEffects not found.")
+		end
+	end
+})
+ 
+Tab2:CreateInput({
+	Name = "Melee Range (5 = +500%)",
+	CurrentValue = "5",
+	RemoveTextAfterFocusLost = false,
+	PlaceholderText = "",
+	Flag = "meleerangevalue",
+	Callback = function(Value)
+		Rayfield.Flags["meleerangevalue"] = { Value = Value }
+	end	  
+})
+ 
+Tab2:CreateInput({
+	Name = "Pogo Range (5 = +500%)",
+	Default = "5",
+	RemoveTextAfterFocusLost = false,
+	PlaceholderText = "",
+	Flag = "pogorangevalue",
+	Callback = function(Value)
+		Rayfield.Flags["pogorangevalue"] = { Value = Value }
+	end	  
+})
+ 
+Tab2:CreateButton({
+	Name = "Bandit/Stage Prop (Melee Range & Pogo Range)",
+	Callback = function()
+		local accessoryEffects = game.Players.LocalPlayer.Backpack.Parent:FindFirstChild("AccessoryEffects")
+		if accessoryEffects then
+			accessoryEffects:SetAttribute("Melee_Range", Rayfield.Flags["meleerangevalue"].Value)
+			accessoryEffects:SetAttribute("Pogo_Range", Rayfield.Flags["pogorangevalue"].Value)
+		else
+			print("AccessoryEffects not found.")
+		end
+	end
+})
+ 
+-- Character Tab
+local Tab3 = Window:CreateTab("Character")
+ 
+-- Button for Infinite Dashes
+Tab3:CreateButton({
+	Name = "Infinite Dashes",
+	Callback = function()
+		local character = game.Players.LocalPlayer.Character
+		if character then
+			character:SetAttribute("DashRegenTime", 0.05)
+			character:SetAttribute("DashRegenFury", 0.05)
+		else
+			print("Character not found.")
+		end
+	end
+})
+ 
+-- Utility Boost Textbox and Button
+Tab3:CreateInput({
+	Name = "Utility Boost Value",
+	CurrentValue = "2",
+	RemoveTextAfterFocusLost = false,
+	PlaceholderText = "",
+	Flag = "utilityboostvalue",
+	Callback = function(Value)
+		Rayfield.Flags["utilityboostvalue"] = { Value = Value }
+	end
+})
+ 
+Tab3:CreateButton({
+	Name = "Utility Boost",
+	Callback = function()
+		local character = game.Players.LocalPlayer.Character
+		if character then
+			character:SetAttribute("UtilityBoost", Rayfield.Flags["utilityboostvalue"].Value)
+		else
+			print("Character not found.")
+		end
+	end
+})
+
+local Player = game.Players.LocalPlayer
+local Humanoid
+
+local DefaultWalkSpeed = 16
+local DefaultJumpPower = 50
+local SpeedhackEnabled = false
+local JumppowerEnabled = false
+local FlyEnabled = false
+
+local SpeedValue = DefaultWalkSpeed
+local JumpValue = DefaultJumpPower
+local FlySpeed = 50
+
+local Player = game.Players.LocalPlayer
+local Character = Player.Character or Player.CharacterAdded:Wait()
+local Humanoid = Character:WaitForChild("Humanoid")
+local HRP = Character:WaitForChild("HumanoidRootPart")
+local RunService = game:GetService("RunService")
+local Camera = workspace.CurrentCamera
+local UserInputService = game:GetService("UserInputService")
+
+local FlySpeed = 50
+local flying = false
+local bodyVelocity = Instance.new("BodyVelocity")
+bodyVelocity.MaxForce = Vector3.new(1e5,1e5,1e5)
+bodyVelocity.Velocity = Vector3.zero
+
+local bodyGyro = Instance.new("BodyGyro")
+bodyGyro.MaxTorque = Vector3.new(1e5,1e5,1e5)
+bodyGyro.CFrame = HRP.CFrame
+
+local inputFlags = {forward=false, back=false, left=false, right=false, up=false, down=false}
+
+UserInputService.InputBegan:Connect(function(input)
+    if input.KeyCode == Enum.KeyCode.W then inputFlags.forward = true end
+    if input.KeyCode == Enum.KeyCode.S then inputFlags.back = true end
+    if input.KeyCode == Enum.KeyCode.A then inputFlags.left = true end
+    if input.KeyCode == Enum.KeyCode.D then inputFlags.right = true end
+    if input.KeyCode == Enum.KeyCode.Space then inputFlags.up = true end
+    if input.KeyCode == Enum.KeyCode.LeftControl then inputFlags.down = true end
+end)
+
+UserInputService.InputEnded:Connect(function(input)
+    if input.KeyCode == Enum.KeyCode.W then inputFlags.forward = false end
+    if input.KeyCode == Enum.KeyCode.S then inputFlags.back = false end
+    if input.KeyCode == Enum.KeyCode.A then inputFlags.left = false end
+    if input.KeyCode == Enum.KeyCode.D then inputFlags.right = false end
+    if input.KeyCode == Enum.KeyCode.Space then inputFlags.up = false end
+    if input.KeyCode == Enum.KeyCode.LeftControl then inputFlags.down = false end
+end)
+
+local function startFlying()
+    flying = true
+    bodyVelocity.Parent = HRP
+    bodyGyro.Parent = HRP
+    Humanoid.PlatformStand = true
+end
+
+local function stopFlying()
+    flying = false
+    bodyVelocity.Parent = nil
+    bodyGyro.Parent = nil
+    Humanoid.PlatformStand = false
+end
+
+RunService.RenderStepped:Connect(function()
+    if flying then
+        local moveDir = Vector3.new()
+        local camCF = Camera.CFrame
+
+        if inputFlags.forward then moveDir += camCF.LookVector end
+        if inputFlags.back then moveDir -= camCF.LookVector end
+        if inputFlags.left then moveDir -= camCF.RightVector end
+        if inputFlags.right then moveDir += camCF.RightVector end
+        if inputFlags.up then moveDir += Vector3.new(0,1,0) end
+        if inputFlags.down then moveDir -= Vector3.new(0,1,0) end
+
+        if moveDir.Magnitude > 0 then moveDir = moveDir.Unit end
+        bodyVelocity.Velocity = moveDir * FlySpeed
+        bodyGyro.CFrame = CFrame.new(HRP.Position, HRP.Position + camCF.LookVector)
+    end
+end)
+
+Player.CharacterAdded:Connect(function(newChar)
+    Character = newChar
+    Humanoid = Character:WaitForChild("Humanoid")
+    HRP = Character:WaitForChild("HumanoidRootPart")
+    if flying then
+        startFlying()
+    end
+end)
+
+-- Toggle Speedhack
+Tab3:CreateToggle({
+    Name = "Enable Speed",
+    CurrentValue = false,
+    Flag = "SpeedhackToggle",
+    Callback = function(Value)
+        SpeedhackEnabled = Value
+        if Humanoid then
+            if SpeedhackEnabled then
+                Humanoid.WalkSpeed = SpeedValue
+            else
+                Humanoid.WalkSpeed = DefaultWalkSpeed
+            end
+        end
+    end
+})
+
+-- Slider Speedhack
+Tab3:CreateSlider({
+    Name = "Speed Value",
+    Range = {5, 200},
+    Increment = 1,
+    Suffix = " WalkSpeed",
+    CurrentValue = DefaultWalkSpeed,
+    Flag = "SpeedValue",
+    Callback = function(Value)
+        SpeedValue = Value
+        if SpeedhackEnabled and Humanoid then
+            Humanoid.WalkSpeed = SpeedValue
+        end
+    end
+})
+
+-- Toggle Jumppower
+Tab3:CreateToggle({
+    Name = "Enable Jump",
+    CurrentValue = false,
+    Flag = "JumppowerToggle",
+    Callback = function(Value)
+        JumppowerEnabled = Value
+        if Humanoid then
+            if JumppowerEnabled then
+                Humanoid.UseJumpPower = true
+                Humanoid.JumpPower = JumpValue
+            else
+                Humanoid.JumpPower = DefaultJumpPower
+            end
+        end
+    end
+})
+
+-- Slider Jumppower
+Tab3:CreateSlider({
+    Name = "Jump Value",
+    Range = {10, 500},
+    Increment = 5,
+    Suffix = " JumpPower",
+    CurrentValue = DefaultJumpPower,
+    Flag = "JumpValue",
+    Callback = function(Value)
+        JumpValue = Value
+        if JumppowerEnabled and Humanoid then
+            Humanoid.UseJumpPower = true
+            Humanoid.JumpPower = JumpValue
+        end
+    end
+})
+
+Tab3:CreateToggle({
+    Name = "Fly",
+    CurrentValue = false,
+    Flag = "FlyToggle",
+    Callback = function(Value)
+        flying = Value
+        if flying then
+            startFlying()
+        else
+            stopFlying()
+        end
+    end
+})
+
+-- Slider Fly
+Tab3:CreateSlider({
+    Name = "Fly Speed",
+    Range = {10,200},
+    Increment = 5,
+    Suffix = " Studs/s",
+    CurrentValue = FlySpeed,
+    Flag = "FlySpeed",
+    Callback = function(Value)
+        FlySpeed = Value
+    end
+})
+
+-- Farm Tab
+local Tab4 = Window:CreateTab("Auto Farm", nil)
+
+local FarmEnabled = false
+local Distance = 10
+
+local function BringNPCs()
+    local lp = game.Players.LocalPlayer
+    local path = game.Workspace:WaitForChild("Enemies")
+
+    while FarmEnabled do
+        local char = lp.Character
+        local playerHRP = char and char:FindFirstChild("HumanoidRootPart")
+        if playerHRP then
+            for _, npc in ipairs(path:GetChildren()) do
+                local npcHRP = npc:FindFirstChild("HumanoidRootPart")
+                local npcHumanoid = npc:FindFirstChild("Humanoid")
+                if npcHRP and npcHumanoid and npcHumanoid.Health > 0 then
+                    npcHRP.CFrame = playerHRP.CFrame + playerHRP.CFrame.LookVector * Distance
+                end
+            end
+        end
+        task.wait(0.1)
+    end
+end
+
+Tab4:CreateToggle({
+    Name = "Kill All",
+    CurrentValue = false,
+    Flag = "FarmToggle",
+    Callback = function(Value)
+        FarmEnabled = Value
+        if FarmEnabled then
+            task.spawn(BringNPCs)
+        end
+    end
+})
+
+Tab4:CreateInput({
+    Name = "Distance",
+    CurrentValue = tostring(Distance),
+    RemoveTextAfterFocusLost = false,
+    PlaceholderText = "Ex: 10",
+    Flag = "FarmDistanceInput",
+    Callback = function(Value)
+        local num = tonumber(Value)
+        if num then
+            Distance = num
+        end
+    end
+})
+
+-- Info Tab
+local Tab5 = Window:CreateTab("Information", 0)
+Tab5:CreateParagraph({Title = "v2.1.3.2", Content = "Updated for"})
+Tab5:CreateParagraph({Title = "v1 ALPHA", Content = "Current version"})
+Tab5:CreateParagraph({Title = "marik611277", Content = "Made by"})
+Tab5:CreateParagraph({Title = "validspec", Content = "Kill all / Auto farm by"})
+Tab5:CreateParagraph({Title = "nickkjkj", Content = "Updated by"})
+Tab5:CreateParagraph({Title = "Non-GUI script", Content = "Inspired by"})
