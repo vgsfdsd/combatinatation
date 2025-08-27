@@ -218,34 +218,6 @@ Tab:CreateButton({
 	end
 })
 
--- Button for Modded Rocket Launcher
-Tab:CreateButton({
-	Name = "Modded Rocket Launcher",
-	Default = false,
-	Flag = "Rocket Launcher",
-	Callback = function()
-		modifyToolAttributes("Rocket Launcher", {
-			ReloadTick = 0,
-			Capacity = 100,
-			PassiveReloadTick = 0
-		})
-	end
-})
-
--- Button for Modded Multi-Rocket Launcher
-Tab:CreateButton({
-	Name = "Modded Multi-Rocket Launcher",
-	Default = false,
-	Flag = "Multi-Rocket Launcher",
-	Callback = function()
-		modifyToolAttributes("Multi-Rocket Launcher", {
-			ReloadTick = 0,
-			Capacity = 100,
-			PassiveReloadTick = 0
-		})
-	end
-})
- 
 local Section5 = Tab:CreateSection("Timebomb")
 Tab:CreateParagraph({Title = "Timebomb", Content = "Chat is this real?"})
  
@@ -626,4 +598,3 @@ Tab5:CreateParagraph({Title = "v1 ALPHA", Content = "Current version"})
 Tab5:CreateParagraph({Title = "marik611277", Content = "Made by"})
 Tab5:CreateParagraph({Title = "validspec", Content = "Kill all / Auto farm by"})
 Tab5:CreateParagraph({Title = "nickkjkj", Content = "Updated by"})
-Tab5:CreateParagraph({Title = "Non-GUI script", Content = "Inspired by"})
