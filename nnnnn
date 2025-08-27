@@ -222,7 +222,7 @@ Tab:CreateButton({
 Tab:CreateButton({
 	Name = "Modded Rocket Launcher",
 	Default = false,
-	Flag = "Rocket_Launcher",
+	Flag = "Rocket Launcher",
 	Callback = function()
 		modifyToolAttributes("Rocket Launcher", {
 			ReloadTick = 0,
@@ -236,7 +236,7 @@ Tab:CreateButton({
 Tab:CreateButton({
 	Name = "Modded Multi-Rocket Launcher",
 	Default = false,
-	Flag = "Multi-Rocket_Launcher",
+	Flag = "Multi-Rocket Launcher",
 	Callback = function()
 		modifyToolAttributes("Multi-Rocket Launcher", {
 			ReloadTick = 0,
